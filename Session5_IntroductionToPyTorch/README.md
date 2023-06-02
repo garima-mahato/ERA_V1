@@ -1,5 +1,3 @@
-<b>[Back to Main Page](https://garima-mahato.github.io/ERA_V1/)</b>
-
 # MNIST Classifier
 
 |Code Link |
