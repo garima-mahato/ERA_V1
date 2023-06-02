@@ -6,6 +6,17 @@ from torchvision import datasets, transforms
 
 import matplotlib.pyplot as plt
 
+def set_device():
+    """_summary_
+
+    Returns:
+        _type_: _description_
+    """
+    use_cuda = torch.cuda.is_available()
+    device = torch.device("cuda" if use_cuda else "cpu")
+
+    return device
+
 ##################### Visualtion Utilities #########################
 
 def view_data(data_loader):
