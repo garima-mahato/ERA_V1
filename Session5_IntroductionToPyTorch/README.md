@@ -160,6 +160,11 @@ Adjusting learning rate of group 0 to 1.0000e-03.
 _____
      |___ model.py (contains model description)
      |___ utils.py (contains utility functions)
-                                               |___ model.py (contains model description)
+                                               |___ set_device (function to set device as with/without cuda based on availability)
+                                               |___ view_data (function to view sample data)
+                                               |___ vis_train_test_comp_graphs (function to visualize the train loss/accuracy and test loss/accuracy)
+                                               |___ GetCorrectPredCount (function to get correct prediction count)
+                                               |___ train (function to train the model)
+                                               |___ test (function to test the trained model)
 
 ```

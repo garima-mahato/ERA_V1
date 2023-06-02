@@ -7,10 +7,10 @@ from torchvision import datasets, transforms
 import matplotlib.pyplot as plt
 
 def set_device():
-    """_summary_
+    """set device as with/without cuda based on availability
 
     Returns:
-        _type_: _description_
+        string: returns "cuda" f cuda is available else "cpu"
     """
     use_cuda = torch.cuda.is_available()
     device = torch.device("cuda" if use_cuda else "cpu")
@@ -76,12 +76,12 @@ def train(model, device, train_loader, optimizer, train_acc, train_losses):
     """Trains the model
 
     Args:
-        model (torch.nn.Module): _description_
-        device (_type_): _description_
-        train_loader (torch.utils.data.DataLoader): _description_
-        optimizer (torch.optim): _description_
-        train_acc (tensor): _description_
-        train_losses (tensor): _description_
+        model (torch.nn.Module): pytorch model
+        device (_type_): cuda or cpu
+        train_loader (torch.utils.data.DataLoader): data iterator on training data
+        optimizer (torch.optim): optimizer function
+        train_acc (list): stores accuracy of each batch
+        train_losses (list): stores loss of each batch
     """
     model.train()
     pbar = tqdm(train_loader)
@@ -117,11 +117,11 @@ def test(model, device, test_loader, test_acc, test_losses):
     """_summary_
 
     Args:
-        model (_type_): _description_
-        device (_type_): _description_
-        test_loader (_type_): _description_
-        test_acc (_type_): _description_
-        test_losses (_type_): _description_
+        model (torch.nn.Module): pytorch model
+        device (_type_): cuda or cpu
+        test_loader (torch.utils.data.DataLoader): data iterator on test data
+        test_acc (list): stores accuracy of each batch
+        test_losses (list): stores loss of each batch
     """
     model.eval()
 
