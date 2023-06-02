@@ -3,7 +3,7 @@
 
 ### Data Description
 
-![]()
+![Sample Data](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session5_IntroductionToPyTorch/images/data_sample.png)
 
 ---
 ### Model Description
@@ -142,7 +142,17 @@ Adjusting learning rate of group 0 to 1.0000e-03.
 
 #### Visualization
 
-![]()
+![Train/Test Acc/Loss](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session5_IntroductionToPyTorch/images/train_test_loss_acc.png)
 
 ---
 ### Code Description
+
+##### Folder structure
+
+```
+_____
+     |___ model.py (contains model description)
+     |___ utils.py (contains utility functions)
+                                               |___ model.py (contains model description)
+
+```
