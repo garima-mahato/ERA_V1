@@ -1,4 +1,4 @@
-# MNIST Classifier
+# Session 5: Introduction to Pytorch - MNIST Classifier
 
 |Code Link |
 |---|
