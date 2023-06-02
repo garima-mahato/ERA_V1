@@ -1,5 +1,8 @@
-# MNIST Claasifier
+# MNIST Classifier
 
+|Code Link |
+|---|
+|[ Google Colab](https://githubtocolab.com/garima-mahato/ERA_V1/blob/main/Session5_IntroductionToPyTorch/images/S5.ipynb)|
 
 ### Data Description
 
@@ -29,6 +32,10 @@ Params size (MB): 2.26
 Estimated Total Size (MB): 2.94
 ----------------------------------------------------------------
 ```
+
+<b>Model Visualization</b>
+
+![Model Visualization](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session5_IntroductionToPyTorch/images/mnist_cnn_torchviz.png)
 
 ---
 ### Training & Testing
