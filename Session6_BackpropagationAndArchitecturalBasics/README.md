@@ -44,11 +44,6 @@ a_o2 = σ(o2) = 1/(1+exp(-o2))
 
 #### B) Backpropagation
 
-|Code Link|
-|---|
-|[GitHub](https://github.com/garima-mahato/ERA_V1/blob/main/Session6_BackpropagationAndArchitecturalBasics/Part2/ERA_V1_Session6_Part2.ipynb)|
-|[GitHub](https://githubtocolab.com/garima-mahato/ERA_V1/blob/main/Session6_BackpropagationAndArchitecturalBasics/Part2/ERA_V1_Session6_Part2.ipynb)|
-
 **I) Using the generated output and target, error is calculated.**
 
 For above network, L2 error is calculated as shown below:
@@ -102,6 +97,12 @@ For above network, below are the error gradients with respect to weights calcula
 
 
 ## Part 2) Architecture Basics
+
+|Code Link|
+|---|
+|[GitHub](https://github.com/garima-mahato/ERA_V1/blob/main/Session6_BackpropagationAndArchitecturalBasics/Part2/ERA_V1_Session6_Part2.ipynb)|
+|[GitHub](https://githubtocolab.com/garima-mahato/ERA_V1/blob/main/Session6_BackpropagationAndArchitecturalBasics/Part2/ERA_V1_Session6_Part2.ipynb)|
+
 
 <b>Best Test Accuracy: 99.54 % </b>
 
