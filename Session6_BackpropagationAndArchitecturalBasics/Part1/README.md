@@ -1,17 +1,15 @@
 # Neural Network Training in Excel
 ---
 
-[GitHub Link to Neural Network Training excel sheet](https://github.com/garima-mahato/END2/blob/main/Session%202-BackProp_Embeddings_and_Language_Models/END2_S2_Backpropagation.xlsx)
+[GitHub Link to Neural Network Training excel sheet](https://github.com/garima-mahato/ERA_V1/blob/main/Session6_BackpropagationAndArchitecturalBasics/Part1/ERA_V1_S6_Backpropagation.xlsx)
 
-[Google excel link to Neural Network Training](https://docs.google.com/spreadsheets/d/1ahzv_qVae4vIwlbaJNCeRTGbtVtDbj4M_Og42BSuVQ4/edit?usp=sharing)
-
-![](https://raw.githubusercontent.com/garima-mahato/END2/main/Session%202-BackProp_Embeddings_and_Language_Models/assets/training.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session6_BackpropagationAndArchitecturalBasics/Part1/assets/Backpropagation.JPG)
 
 ## Major Steps in NN Training
 
 Suppose we have the below network:
 
-![](https://raw.githubusercontent.com/garima-mahato/END2/main/Session%202-BackProp_Embeddings_and_Language_Models/assets/nn.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session6_BackpropagationAndArchitecturalBasics/Part1/assets/nn.PNG)
 
 
 ### 1) Initialization of Neural Network
@@ -87,12 +85,12 @@ j is the iteration number
 
 For above network, below are the error gradients with respect to weights calculated using chain formula.
 
-![](https://raw.githubusercontent.com/garima-mahato/END2/main/Session%202-BackProp_Embeddings_and_Language_Models/assets/bp.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session6_BackpropagationAndArchitecturalBasics/Part1/assets/bp.PNG)
 
 
 ---
 # Error Graphs for various learning rates
 
-![](https://raw.githubusercontent.com/garima-mahato/END2/main/Session%202-BackProp_Embeddings_and_Language_Models/assets/err_lr.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session6_BackpropagationAndArchitecturalBasics/Part1/assets/err_lr_rel.PNG)
 
 
