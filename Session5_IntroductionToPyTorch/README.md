@@ -1,4 +1,6 @@
-# MNIST Classifier
+[<- Back](https://garima-mahato.github.io/ERA_V1/)
+
+# Session 5: Introduction to Pytorch - MNIST Classifier
 
 |Code Link |
 |---|
