@@ -143,6 +143,7 @@ Estimated Total Size (MB): 0.94
 ----------------------------------------------------------------
 ```
 
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session6_BackpropagationAndArchitecturalBasics/Part2/assets/mnist_cnn_torchviz.png)
 
 #### Training and Testing
 
@@ -255,4 +256,4 @@ Adjusting learning rate of group 0 to 1.0000e-03.
 
 <b>Visualization</b>
 
-![]()
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session6_BackpropagationAndArchitecturalBasics/Part2/assets/train_test_acc_loss.png)
