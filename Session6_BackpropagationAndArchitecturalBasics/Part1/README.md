@@ -1,5 +1,7 @@
-# Neural Network Training in Excel
+# BackPropagation And Architecture Basics
 ---
+
+## Part 1) Backpropagation
 
 [GitHub Link to Neural Network Training excel sheet](https://github.com/garima-mahato/ERA_V1/blob/main/Session6_BackpropagationAndArchitecturalBasics/Part1/ERA_V1_S6_Backpropagation.xlsx)
 
@@ -91,6 +93,9 @@ For above network, below are the error gradients with respect to weights calcula
 ---
 # Error Graphs for various learning rates
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session6_BackpropagationAndArchitecturalBasics/Part1/assets/err_lr_rel.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session6_BackpropagationAndArchitecturalBasics/Part1/assets/err_lr_rel.JPG)
+
+
+## Part 2) Architecture Basics
 
 
