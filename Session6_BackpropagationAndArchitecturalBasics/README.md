@@ -101,7 +101,7 @@ For above network, below are the error gradients with respect to weights calcula
 |Code Link|
 |---|
 |[GitHub](https://github.com/garima-mahato/ERA_V1/blob/main/Session6_BackpropagationAndArchitecturalBasics/Part2/ERA_V1_Session6_Part2.ipynb)|
-|[GitHub](https://githubtocolab.com/garima-mahato/ERA_V1/blob/main/Session6_BackpropagationAndArchitecturalBasics/Part2/ERA_V1_Session6_Part2.ipynb)|
+|[Google Colab](https://githubtocolab.com/garima-mahato/ERA_V1/blob/main/Session6_BackpropagationAndArchitecturalBasics/Part2/ERA_V1_Session6_Part2.ipynb)|
 
 
 <b>Best Test Accuracy: 99.54 % </b>
