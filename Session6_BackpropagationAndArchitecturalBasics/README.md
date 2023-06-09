@@ -91,7 +91,7 @@ For above network, below are the error gradients with respect to weights calcula
 
 
 ---
-# Error Graphs for various learning rates
+#### Error Graphs for various learning rates
 
 ![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session6_BackpropagationAndArchitecturalBasics/Part1/assets/err_lr_rel.JPG)
 
