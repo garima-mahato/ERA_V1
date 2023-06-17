@@ -1,126 +1,28 @@
-# BackPropagation And Architecture Basics
----
+# MNIST-trained Model with 99.4% test accuracy in < 8K Parameters and <15 epochs
 
-## Part 1) Backpropagation
-
-[GitHub Link to Neural Network Training excel sheet](https://github.com/garima-mahato/ERA_V1/blob/main/Session6_BackpropagationAndArchitecturalBasics/Part1/ERA_V1_S6_Backpropagation.xlsx)
-
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session6_BackpropagationAndArchitecturalBasics/Part1/assets/Backpropagation.JPG)
-
-## Major Steps in NN Training
-
-Suppose we have the below network:
-
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session6_BackpropagationAndArchitecturalBasics/Part1/assets/nn.PNG)
-
-
-### 1) Initialization of Neural Network
-Randomly initializing weights [w1,....,w8] and Learning Rate lr.
-
-
-### 2) For each iteration, below steps are performed:
-
-#### A) Forward Propagation
-
-For the above network, output will be calculated using the below formulae:
-
-```
-h1 = w1*i1 + w2*i2	
-
-h2 = w3*i1 + w4*i2
-
-a_h1 = σ(h1) = 1/(1+exp(-h1))	
-
-a_h2 = σ(h2) = 1/(1+exp(-h2))	
-
-o1 = w5*a_h1 + w6*a_h2	
-
-o2 = w7*a_h1 + w8*a_h2
-
-a_o1 = σ(o1) = 1/(1+exp(-o1))		
-
-a_o2 = σ(o2) = 1/(1+exp(-o2))	
-```
-
-#### B) Backpropagation
-
-**I) Using the generated output and target, error is calculated.**
-
-For above network, L2 error is calculated as shown below:
-
-```
-E1 = ½*(t1-a_o1)²	
-
-E2 = ½*(t2-a_o2)²	
-
-E_total = E1 + E2		
-```
-
-**II) Each of the weight in the network is updated as follows:**
-
-i) Error gradient with respect to the specific weight(∂Error/∂w<sub>i</sub>) is calculated. Negative error indicates the direction in which the error can be minimized by updatig the specific weight.
-
-Example:- For w5
-```
-∂E_total/∂w5 = ∂(E1+E2)/∂w5 = ∂E1/∂w5 = ∂E1/∂a_o1 * ∂a_o1/∂o1 * ∂o1/∂w5		
-
-∂E1/∂a_o1 = -1*(t1-a_o1) = a_o1-t1			
-
-∂a_o1/∂o1 = ∂(σ(o1))/∂o1 = σ(o1)*(1-σ(o1)) = a_o1*(1-a_o1)
-
-∂o1/∂w5 = a_h1			
-```
-Thus, it becomes
-
-```
-∂E_total/∂w5 = (a_o1-t1) * a_o1*(1-a_o1) * a_h1					
-```
-
-ii) Weight is updated using:
-
-w<sub>i</sub><sup>j+1</sup> = w<sub>i</sub><sup>j</sup> - ɳ * ∂Error/∂w<sub>i</sub><sup>j</sup>
-
-where i is the weight index,
-      
-j is the iteration number
-
-
-For above network, below are the error gradients with respect to weights calculated using chain formula.
-
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session6_BackpropagationAndArchitecturalBasics/Part1/assets/bp.PNG)
-
-
-#### Error Graphs for various learning rates
-
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session6_BackpropagationAndArchitecturalBasics/Part1/assets/err_lr_rel.JPG)
+| S.No. | File Name | Highlight |Targets | Results | Analysis | File Link |
+|---|---|---|---|---|---|---|
+|1|S7_File1 | Basic Skeleton Creation|Create a basic skeleton with less than 8K parameters which is able to reach 99% in less than 15 epochs. The basic skeleton was created based on the expand and squeeze architecture.|<ul><li>Best Train Accuracy - 99.59%</li><li> Best Test Accuracy - 99.27%</li><li>Total Parameters - 8000</li></ul>|Good starting model but high overfitting|[Open]()|
+|2|S7_File2 | Improving the Basic Model (Reducing Overfitting)| Improve the basic model by reducing overfitting. Added dropout of 0.05 to reduce overfitting. With the basic model, I was able to achieve 99.4% accuracy when trained for around 40 epochs. This means that the model has the capacity to reach 99.4%. So, after adding dropout, I added step LR starting at 0.1 and reducing by 0.1 at every 4 epochs. These 2 numbers were found after experimenting.|<ul><li>Best Train Accuracy - 98.54%</li><li> Best Test Accuracy - 99.38%</li><li>Total Parameters - 8000</li></ul>|Overfitting reduced and was consistently able to maintain 99.3% test accuracy. Increasing the learning rate to 0.1 helped to reach higher accuracy sooner and gradually decreasing the learning rate by 0.1 helped in achieving stable results. Giving more training sample can improve the learning of the model.|[Open]()|
+|3|S7_File3 | Improving the Model (Image Augmentation, Batch Size(Sweet Spot), Regularization)|Improve the model learning by:<ol><li>Adding image augmentation</li><li>Reducing batch size</li><li>Adding regularization at correct position with reduced batch size</li><ol>|<ul><li>Best Train Accuracy - 98.55%</li><li> Best Test Accuracy - 99.42%</li><li>Total Parameters - 8000</li></ul>|<ol><li>Adding image augmentation of scaling, translation and rotation increased the difficulty of model's training so we see an improvement in the test accuracy</li><li>Reducing batch size from 512 to 128 improved the generalization capability of the model on the test dataset and brought the test accuracy in the 99.4% threshold. 128 batch size is the sweet spot for this model, below which the test accuracy degrades. This is due to the existence to “noise” in small batch size training. Because neural network systems are extremely prone to overfitting, upon seeing many small batch size, each batch being a “noisy” representation of the entire dataset, will cause a sort of “tug-and-pull” dynamic. This “tug-and-pull” dynamic prevents the neural network from overfitting on the training set and hence performing badly on the test set.</li><li>Adding STEP LR at correct position of 8 epochs instead of 4. This helped in reducing the epochs for achieving 99.% test accuracy consistently.</li><ol>With the above experimentation, I was able to achieve 99.4% test accuracy consistently.|[Open]()|
 
 ---
 
-## Part 2) Architecture Basics
-
-|Code Link|
-|---|
-|[GitHub](https://github.com/garima-mahato/ERA_V1/blob/main/Session6_BackpropagationAndArchitecturalBasics/Part2/ERA_V1_Session6_Part2.ipynb)|
-|[Google Colab](https://githubtocolab.com/garima-mahato/ERA_V1/blob/main/Session6_BackpropagationAndArchitecturalBasics/Part2/ERA_V1_Session6_Part2.ipynb)|
-
-
-<b>Best/Final Test Accuracy: 99.41 % </b>
-
-#### Model Architecture
+### Model Architecture
 
 ```
 ----------------------------------------------------------------
         Layer (type)               Output Shape         Param #
 ================================================================
-            Conv2d-1           [-1, 16, 26, 26]             144
-              ReLU-2           [-1, 16, 26, 26]               0
-       BatchNorm2d-3           [-1, 16, 26, 26]              32
-           Dropout-4           [-1, 16, 26, 26]               0
-            Conv2d-5           [-1, 24, 24, 24]           3,456
-              ReLU-6           [-1, 24, 24, 24]               0
-       BatchNorm2d-7           [-1, 24, 24, 24]              48
-           Dropout-8           [-1, 24, 24, 24]               0
-            Conv2d-9           [-1, 10, 24, 24]             240
+            Conv2d-1            [-1, 8, 26, 26]              72
+              ReLU-2            [-1, 8, 26, 26]               0
+       BatchNorm2d-3            [-1, 8, 26, 26]              16
+           Dropout-4            [-1, 8, 26, 26]               0
+            Conv2d-5           [-1, 14, 24, 24]           1,008
+              ReLU-6           [-1, 14, 24, 24]               0
+       BatchNorm2d-7           [-1, 14, 24, 24]              28
+           Dropout-8           [-1, 14, 24, 24]               0
+            Conv2d-9           [-1, 10, 24, 24]             140
         MaxPool2d-10           [-1, 10, 12, 12]               0
            Conv2d-11           [-1, 14, 10, 10]           1,260
              ReLU-12           [-1, 14, 10, 10]               0
@@ -130,137 +32,326 @@ For above network, below are the error gradients with respect to weights calcula
              ReLU-16             [-1, 16, 8, 8]               0
       BatchNorm2d-17             [-1, 16, 8, 8]              32
           Dropout-18             [-1, 16, 8, 8]               0
-           Conv2d-19             [-1, 16, 6, 6]           2,304
-             ReLU-20             [-1, 16, 6, 6]               0
-      BatchNorm2d-21             [-1, 16, 6, 6]              32
-          Dropout-22             [-1, 16, 6, 6]               0
-        AvgPool2d-23             [-1, 16, 1, 1]               0
-           Conv2d-24             [-1, 16, 1, 1]             256
-           Conv2d-25             [-1, 32, 1, 1]             512
-           Linear-26                   [-1, 10]             330
+           Conv2d-19             [-1, 20, 6, 6]           2,880
+             ReLU-20             [-1, 20, 6, 6]               0
+      BatchNorm2d-21             [-1, 20, 6, 6]              40
+          Dropout-22             [-1, 20, 6, 6]               0
+        AvgPool2d-23             [-1, 20, 1, 1]               0
+           Conv2d-24             [-1, 16, 1, 1]             320
+           Conv2d-25             [-1, 10, 1, 1]             160
 ================================================================
-Total params: 10,690
-Trainable params: 10,690
+Total params: 8,000
+Trainable params: 8,000
 Non-trainable params: 0
 ----------------------------------------------------------------
 Input size (MB): 0.00
-Forward/backward pass size (MB): 0.90
-Params size (MB): 0.04
-Estimated Total Size (MB): 0.94
+Forward/backward pass size (MB): 0.56
+Params size (MB): 0.03
+Estimated Total Size (MB): 0.60
 ----------------------------------------------------------------
 ```
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session6_BackpropagationAndArchitecturalBasics/Part2/assets/mnist_cnn_torchviz.png)
+| Block | Layer | Input Size | Output Size | Receptive Field |
+|---|---|---|---|---|
+| Input Block | Conv2D(3x3) | 28x28x1 | 26x26x8 | 3x3 |
+| Convolution Block 1 | Conv2D(3x3) | 26x26x8 | 24x24x14 | 5x5 |
+| Transition Block 1 | Conv2D(1x1) | 24x24x14 | 24x24x10 | 5x5 |
+| Convolution Block 1 | Max Pool(2x2) | 24x24x10 | 12x12x10 | 6x6 |
+| Convolution Block 1 | Conv2D(3x3) | 12x12x10 | 10x10x14 | 10x10 |
+| Convolution Block 1 | Conv2D(3x3) | 10x10x14 | 8x8x16 | 14x14 |
+| Convolution Block 1 | Conv2D(3x3) | 8x8x16 | 6x6x20 | 18x18 |
+| Output Block | GAP | 6x6x20 | 1x1x20 | 28x28 |
+| Output Block | FC | 1x1x20 | 1x1x16 | 28x28 |
+| Output Block | FC | 1x1x16 | 1x1x10 | 28x28 | 
 
-#### Training and Testing
+## S7_File1: Basic Skeleton Creation
 
-<b>Logs</b>
+##### Targets: 
+Create a basic skeleton with less than 8K parameters which is able to reach 99% in less than 15 epochs. The basic skeleton was created based on the expand and squeeze architecture.
+
+##### Results: 
+  - Best Train Accuracy - 99.59%
+  - Best Test Accuracy - 99.27%
+  - Total Parameters - 8000
+
+##### Analysis: 
+Good starting model but high overfitting
+
+<b>Train/Test Logs</b>
 
 ```
-Adjusting learning rate of group 0 to 1.0000e-02.
 Epoch 1
-Train: Loss=0.3845 Batch_id=937 Accuracy=80.10: 100%|██████████| 938/938 [00:39<00:00, 23.63it/s]
-Test set: Average loss: 0.0605, Accuracy: 9807/10000 (98.07%)
+Train: Loss=0.0996 Batch_id=117 Accuracy=85.17: 100%|██████████| 118/118 [00:21<00:00,  5.46it/s]
+Test set: Average loss: 0.1631, Accuracy: 9509/10000 (95.09%)
 
-Adjusting learning rate of group 0 to 1.0000e-02.
 Epoch 2
-Train: Loss=0.1039 Batch_id=937 Accuracy=95.97: 100%|██████████| 938/938 [00:31<00:00, 30.12it/s]
-Test set: Average loss: 0.0582, Accuracy: 9806/10000 (98.06%)
+Train: Loss=0.0364 Batch_id=117 Accuracy=98.00: 100%|██████████| 118/118 [00:21<00:00,  5.46it/s]
+Test set: Average loss: 0.0541, Accuracy: 9833/10000 (98.33%)
 
-Adjusting learning rate of group 0 to 1.0000e-02.
 Epoch 3
-Train: Loss=0.3055 Batch_id=937 Accuracy=96.72: 100%|██████████| 938/938 [00:31<00:00, 29.44it/s]
-Test set: Average loss: 0.0334, Accuracy: 9907/10000 (99.07%)
+Train: Loss=0.1695 Batch_id=117 Accuracy=98.56: 100%|██████████| 118/118 [00:21<00:00,  5.38it/s]
+Test set: Average loss: 0.0441, Accuracy: 9854/10000 (98.54%)
 
-Adjusting learning rate of group 0 to 1.0000e-02.
 Epoch 4
-Train: Loss=0.0642 Batch_id=937 Accuracy=97.17: 100%|██████████| 938/938 [00:33<00:00, 28.37it/s]
-Test set: Average loss: 0.0316, Accuracy: 9901/10000 (99.01%)
+Train: Loss=0.0391 Batch_id=117 Accuracy=98.78: 100%|██████████| 118/118 [00:21<00:00,  5.48it/s]
+Test set: Average loss: 0.0378, Accuracy: 9893/10000 (98.93%)
 
-Adjusting learning rate of group 0 to 1.0000e-02.
 Epoch 5
-Train: Loss=0.0445 Batch_id=937 Accuracy=97.35: 100%|██████████| 938/938 [00:31<00:00, 29.76it/s]
-Test set: Average loss: 0.0306, Accuracy: 9905/10000 (99.05%)
+Train: Loss=0.0258 Batch_id=117 Accuracy=99.02: 100%|██████████| 118/118 [00:22<00:00,  5.31it/s]
+Test set: Average loss: 0.0381, Accuracy: 9889/10000 (98.89%)
 
-Adjusting learning rate of group 0 to 1.0000e-02.
 Epoch 6
-Train: Loss=0.2260 Batch_id=937 Accuracy=97.62: 100%|██████████| 938/938 [00:31<00:00, 30.21it/s]
-Test set: Average loss: 0.0259, Accuracy: 9916/10000 (99.16%)
+Train: Loss=0.0136 Batch_id=117 Accuracy=99.01: 100%|██████████| 118/118 [00:21<00:00,  5.60it/s]
+Test set: Average loss: 0.0357, Accuracy: 9879/10000 (98.79%)
 
-Adjusting learning rate of group 0 to 1.0000e-02.
 Epoch 7
-Train: Loss=0.1017 Batch_id=937 Accuracy=97.69: 100%|██████████| 938/938 [00:31<00:00, 29.83it/s]
-Test set: Average loss: 0.0261, Accuracy: 9918/10000 (99.18%)
+Train: Loss=0.0276 Batch_id=117 Accuracy=99.21: 100%|██████████| 118/118 [00:20<00:00,  5.68it/s]
+Test set: Average loss: 0.0299, Accuracy: 9908/10000 (99.08%)
 
-Adjusting learning rate of group 0 to 1.0000e-02.
 Epoch 8
-Train: Loss=0.0116 Batch_id=937 Accuracy=97.85: 100%|██████████| 938/938 [00:32<00:00, 29.27it/s]
-Test set: Average loss: 0.0247, Accuracy: 9914/10000 (99.14%)
+Train: Loss=0.0548 Batch_id=117 Accuracy=99.24: 100%|██████████| 118/118 [00:20<00:00,  5.70it/s]
+Test set: Average loss: 0.0287, Accuracy: 9908/10000 (99.08%)
 
-Adjusting learning rate of group 0 to 1.0000e-02.
 Epoch 9
-Train: Loss=0.0053 Batch_id=937 Accuracy=97.93: 100%|██████████| 938/938 [00:31<00:00, 29.97it/s]
-Test set: Average loss: 0.0233, Accuracy: 9924/10000 (99.24%)
+Train: Loss=0.0077 Batch_id=117 Accuracy=99.28: 100%|██████████| 118/118 [00:20<00:00,  5.70it/s]
+Test set: Average loss: 0.0318, Accuracy: 9897/10000 (98.97%)
 
-Adjusting learning rate of group 0 to 1.0000e-02.
 Epoch 10
-Train: Loss=0.1205 Batch_id=937 Accuracy=97.92: 100%|██████████| 938/938 [00:31<00:00, 30.02it/s]
-Test set: Average loss: 0.0205, Accuracy: 9929/10000 (99.29%)
+Train: Loss=0.0552 Batch_id=117 Accuracy=99.36: 100%|██████████| 118/118 [00:21<00:00,  5.49it/s]
+Test set: Average loss: 0.0251, Accuracy: 9916/10000 (99.16%)
 
-Adjusting learning rate of group 0 to 1.0000e-03.
 Epoch 11
-Train: Loss=0.1305 Batch_id=937 Accuracy=98.36: 100%|██████████| 938/938 [00:31<00:00, 29.66it/s]
-Test set: Average loss: 0.0191, Accuracy: 9935/10000 (99.35%)
+Train: Loss=0.0032 Batch_id=117 Accuracy=99.43: 100%|██████████| 118/118 [00:22<00:00,  5.24it/s]
+Test set: Average loss: 0.0248, Accuracy: 9920/10000 (99.20%)
 
-Adjusting learning rate of group 0 to 1.0000e-03.
 Epoch 12
-Train: Loss=0.1472 Batch_id=937 Accuracy=98.39: 100%|██████████| 938/938 [00:31<00:00, 29.53it/s]
-Test set: Average loss: 0.0194, Accuracy: 9937/10000 (99.37%)
+Train: Loss=0.0199 Batch_id=117 Accuracy=99.53: 100%|██████████| 118/118 [00:21<00:00,  5.47it/s]
+Test set: Average loss: 0.0271, Accuracy: 9926/10000 (99.26%)
 
-Adjusting learning rate of group 0 to 1.0000e-03.
 Epoch 13
-Train: Loss=0.1252 Batch_id=937 Accuracy=98.42: 100%|██████████| 938/938 [00:31<00:00, 30.06it/s]
+Train: Loss=0.0038 Batch_id=117 Accuracy=99.55: 100%|██████████| 118/118 [00:21<00:00,  5.45it/s]
+Test set: Average loss: 0.0308, Accuracy: 9912/10000 (99.12%)
+
+Epoch 14
+Train: Loss=0.0014 Batch_id=117 Accuracy=99.59: 100%|██████████| 118/118 [00:21<00:00,  5.48it/s]
+Test set: Average loss: 0.0259, Accuracy: 9917/10000 (99.17%)
+
+Epoch 15
+Train: Loss=0.0230 Batch_id=117 Accuracy=99.58: 100%|██████████| 118/118 [00:21<00:00,  5.39it/s]
+Test set: Average loss: 0.0247, Accuracy: 9927/10000 (99.27%)
+
+```
+
+<b>Train/Test Visualization</b>
+
+![]()
+
+---
+
+## S7_File2: Improving the Basic Model (Reducing Overfitting)
+
+##### Targets: 
+  Improve the basic model by reducing overfitting. Added dropout of 0.05 to reduce overfitting. 
+  With the basic model, I was able to achieve 99.4% accuracy when trained for around 40 epochs. This means that the model has the capacity to reach 99.4%. So, after adding dropout, I added step LR starting at 0.1 and reducing by 0.1 at every 4 epochs. These 2 numbers were found after experimenting.
+
+##### Results: 
+  - Best Train Accuracy - 98.54%
+  - Best Test Accuracy - 99.38%
+  - Total Parameters - 8000
+
+##### Analysis: 
+Overfitting reduced and was consistently able to maintain 99.3% test accuracy. Increasing the learning rate to 0.1 helped to reach higher accuracy sooner and gradually decreasing the learning rate by 0.1 helped in achieving stable results. Giving more training sample can improve the learning of the model.
+
+<b>Train/Test Logs</b>
+
+```
+Adjusting learning rate of group 0 to 1.0000e-01.
+Epoch 1
+Train: Loss=0.1322 Batch_id=468 Accuracy=89.18: 100%|██████████| 469/469 [00:32<00:00, 14.39it/s]Adjusting learning rate of group 0 to 1.0000e-01.
+
+Test set: Average loss: 0.0502, Accuracy: 9838/10000 (98.38%)
+
+Epoch 2
+Train: Loss=0.1159 Batch_id=468 Accuracy=96.72: 100%|██████████| 469/469 [00:31<00:00, 14.85it/s]Adjusting learning rate of group 0 to 1.0000e-01.
+
+Test set: Average loss: 0.0327, Accuracy: 9890/10000 (98.90%)
+
+Epoch 3
+Train: Loss=0.0532 Batch_id=468 Accuracy=97.26: 100%|██████████| 469/469 [00:33<00:00, 14.17it/s]Adjusting learning rate of group 0 to 1.0000e-01.
+
+Test set: Average loss: 0.0286, Accuracy: 9917/10000 (99.17%)
+
+Epoch 4
+Train: Loss=0.0535 Batch_id=468 Accuracy=97.46: 100%|██████████| 469/469 [00:33<00:00, 13.80it/s]Adjusting learning rate of group 0 to 1.0000e-02.
+
+Test set: Average loss: 0.0318, Accuracy: 9899/10000 (98.99%)
+
+Epoch 5
+Train: Loss=0.1066 Batch_id=468 Accuracy=98.14: 100%|██████████| 469/469 [00:32<00:00, 14.22it/s]Adjusting learning rate of group 0 to 1.0000e-02.
+
+Test set: Average loss: 0.0202, Accuracy: 9933/10000 (99.33%)
+
+Epoch 6
+Train: Loss=0.0813 Batch_id=468 Accuracy=98.30: 100%|██████████| 469/469 [00:32<00:00, 14.54it/s]Adjusting learning rate of group 0 to 1.0000e-02.
+
+Test set: Average loss: 0.0199, Accuracy: 9935/10000 (99.35%)
+
+Epoch 7
+Train: Loss=0.0108 Batch_id=468 Accuracy=98.33: 100%|██████████| 469/469 [00:32<00:00, 14.34it/s]Adjusting learning rate of group 0 to 1.0000e-02.
+
+Test set: Average loss: 0.0200, Accuracy: 9934/10000 (99.34%)
+
+Epoch 8
+Train: Loss=0.0686 Batch_id=468 Accuracy=98.32: 100%|██████████| 469/469 [00:34<00:00, 13.68it/s]Adjusting learning rate of group 0 to 1.0000e-03.
+
+Test set: Average loss: 0.0189, Accuracy: 9937/10000 (99.37%)
+
+Epoch 9
+Train: Loss=0.0230 Batch_id=468 Accuracy=98.50: 100%|██████████| 469/469 [00:32<00:00, 14.25it/s]Adjusting learning rate of group 0 to 1.0000e-03.
+
+Test set: Average loss: 0.0193, Accuracy: 9936/10000 (99.36%)
+
+Epoch 10
+Train: Loss=0.0431 Batch_id=468 Accuracy=98.40: 100%|██████████| 469/469 [00:31<00:00, 14.76it/s]Adjusting learning rate of group 0 to 1.0000e-03.
+
+Test set: Average loss: 0.0197, Accuracy: 9932/10000 (99.32%)
+
+Epoch 11
+Train: Loss=0.0999 Batch_id=468 Accuracy=98.38: 100%|██████████| 469/469 [00:31<00:00, 14.85it/s]Adjusting learning rate of group 0 to 1.0000e-03.
+
+Test set: Average loss: 0.0190, Accuracy: 9936/10000 (99.36%)
+
+Epoch 12
+Train: Loss=0.1079 Batch_id=468 Accuracy=98.53: 100%|██████████| 469/469 [00:33<00:00, 14.07it/s]Adjusting learning rate of group 0 to 1.0000e-04.
+
+Test set: Average loss: 0.0188, Accuracy: 9938/10000 (99.38%)
+
+Epoch 13
+Train: Loss=0.0809 Batch_id=468 Accuracy=98.54: 100%|██████████| 469/469 [00:32<00:00, 14.48it/s]Adjusting learning rate of group 0 to 1.0000e-04.
+
+Test set: Average loss: 0.0196, Accuracy: 9935/10000 (99.35%)
+
+Epoch 14
+Train: Loss=0.0260 Batch_id=468 Accuracy=98.53: 100%|██████████| 469/469 [00:31<00:00, 14.93it/s]Adjusting learning rate of group 0 to 1.0000e-04.
+
+Test set: Average loss: 0.0189, Accuracy: 9937/10000 (99.37%)
+
+Epoch 15
+Train: Loss=0.0853 Batch_id=468 Accuracy=98.45: 100%|██████████| 469/469 [00:31<00:00, 15.00it/s]Adjusting learning rate of group 0 to 1.0000e-04.
+
 Test set: Average loss: 0.0198, Accuracy: 9933/10000 (99.33%)
 
-Adjusting learning rate of group 0 to 1.0000e-03.
-Epoch 14
-Train: Loss=0.0487 Batch_id=937 Accuracy=98.42: 100%|██████████| 938/938 [00:32<00:00, 29.13it/s]
-Test set: Average loss: 0.0185, Accuracy: 9938/10000 (99.38%)
-
-Adjusting learning rate of group 0 to 1.0000e-03.
-Epoch 15
-Train: Loss=0.0031 Batch_id=937 Accuracy=98.48: 100%|██████████| 938/938 [00:31<00:00, 29.94it/s]
-Test set: Average loss: 0.0178, Accuracy: 9936/10000 (99.36%)
-
-Adjusting learning rate of group 0 to 1.0000e-03.
-Epoch 16
-Train: Loss=0.0247 Batch_id=937 Accuracy=98.54: 100%|██████████| 938/938 [00:31<00:00, 29.47it/s]
-Test set: Average loss: 0.0195, Accuracy: 9931/10000 (99.31%)
-
-Adjusting learning rate of group 0 to 1.0000e-03.
-Epoch 17
-Train: Loss=0.0082 Batch_id=937 Accuracy=98.49: 100%|██████████| 938/938 [00:31<00:00, 29.69it/s]
-Test set: Average loss: 0.0179, Accuracy: 9939/10000 (99.39%)
-
-Adjusting learning rate of group 0 to 1.0000e-03.
-Epoch 18
-Train: Loss=0.0014 Batch_id=937 Accuracy=98.49: 100%|██████████| 938/938 [00:31<00:00, 30.16it/s]
-Test set: Average loss: 0.0189, Accuracy: 9932/10000 (99.32%)
-
-Adjusting learning rate of group 0 to 1.0000e-03.
-Epoch 19
-Train: Loss=0.0914 Batch_id=937 Accuracy=98.50: 100%|██████████| 938/938 [00:32<00:00, 29.14it/s]
-Test set: Average loss: 0.0177, Accuracy: 9937/10000 (99.37%)
-
-Adjusting learning rate of group 0 to 1.0000e-03.
-Epoch 20
-Train: Loss=0.0597 Batch_id=937 Accuracy=98.47: 100%|██████████| 938/938 [00:31<00:00, 29.40it/s]
-Test set: Average loss: 0.0176, Accuracy: 9941/10000 (99.41%)
-
-Adjusting learning rate of group 0 to 1.0000e-04.
 ```
 
 
-<b>Visualization</b>
+---
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session6_BackpropagationAndArchitecturalBasics/Part2/assets/train_test_acc_loss.png)
+## S7_File3: Improving the Model (Image Augmentation, Batch Size(Sweet Spot), Regularization)
+
+
+##### Targets: 
+Improve the model learning by:
+
+  i) Adding image augmentation
+
+  ii) Reducing batch size
+
+  iii) Adding regularization at correct position with reduced batch size
+  
+##### Results: 
+  - Best Train Accuracy - 98.55%
+  - Best Test Accuracy - 99.42%
+  - Total Parameters - 8000
+
+##### Analysis: 
+  i) Adding image augmentation of scaling, translation and rotation increased the difficulty of model's training so we see an improvement in the test accuracy
+
+  ii) Reducing batch size from 512 to 128 improved the generalization capability of the model on the test dataset and brought the test accuracy in the 99.4% threshold. 128 batch size is the sweet spot for this model, below which the test accuracy degrades. This is due to the existence to “noise” in small batch size training. Because neural network systems are extremely prone to overfitting, upon seeing many small batch size, each batch being a “noisy” representation of the entire dataset, will cause a sort of “tug-and-pull” dynamic. This “tug-and-pull” dynamic prevents the neural network from overfitting on the training set and hence performing badly on the test set.
+
+  iii) Adding STEP LR at correct position of 8 epochs instead of 4. This helped in reducing the epochs for achieving 99.% test accuracy consistently.
+
+  With the above experimentation, I was able to achieve 99.4% test accuracy consistently.
+
+  <b>Train/Test Logs</b>
+
+  ```
+  Adjusting learning rate of group 0 to 1.0000e-01.
+Epoch 1
+Train: Loss=0.0786 Batch_id=468 Accuracy=87.56: 100%|██████████| 469/469 [00:33<00:00, 14.01it/s]Adjusting learning rate of group 0 to 1.0000e-01.
+
+Test set: Average loss: 0.0528, Accuracy: 9831/10000 (98.31%)
+
+Epoch 2
+Train: Loss=0.1295 Batch_id=468 Accuracy=96.28: 100%|██████████| 469/469 [00:25<00:00, 18.15it/s]Adjusting learning rate of group 0 to 1.0000e-01.
+
+Test set: Average loss: 0.0507, Accuracy: 9841/10000 (98.41%)
+
+Epoch 3
+Train: Loss=0.1093 Batch_id=468 Accuracy=97.08: 100%|██████████| 469/469 [00:26<00:00, 18.00it/s]Adjusting learning rate of group 0 to 1.0000e-01.
+
+Test set: Average loss: 0.0531, Accuracy: 9841/10000 (98.41%)
+
+Epoch 4
+Train: Loss=0.1115 Batch_id=468 Accuracy=97.30: 100%|██████████| 469/469 [00:27<00:00, 17.20it/s]Adjusting learning rate of group 0 to 1.0000e-01.
+
+Test set: Average loss: 0.0295, Accuracy: 9905/10000 (99.05%)
+
+Epoch 5
+Train: Loss=0.0523 Batch_id=468 Accuracy=97.48: 100%|██████████| 469/469 [00:26<00:00, 17.98it/s]Adjusting learning rate of group 0 to 1.0000e-01.
+
+Test set: Average loss: 0.0334, Accuracy: 9895/10000 (98.95%)
+
+Epoch 6
+Train: Loss=0.0316 Batch_id=468 Accuracy=97.72: 100%|██████████| 469/469 [00:25<00:00, 18.20it/s]Adjusting learning rate of group 0 to 1.0000e-01.
+
+Test set: Average loss: 0.0367, Accuracy: 9884/10000 (98.84%)
+
+Epoch 7
+Train: Loss=0.0307 Batch_id=468 Accuracy=97.87: 100%|██████████| 469/469 [00:26<00:00, 17.84it/s]Adjusting learning rate of group 0 to 1.0000e-01.
+
+Test set: Average loss: 0.0242, Accuracy: 9919/10000 (99.19%)
+
+Epoch 8
+Train: Loss=0.0396 Batch_id=468 Accuracy=97.92: 100%|██████████| 469/469 [00:25<00:00, 18.06it/s]Adjusting learning rate of group 0 to 1.0000e-02.
+
+Test set: Average loss: 0.0372, Accuracy: 9878/10000 (98.78%)
+
+Epoch 9
+Train: Loss=0.0392 Batch_id=468 Accuracy=98.36: 100%|██████████| 469/469 [00:26<00:00, 17.79it/s]Adjusting learning rate of group 0 to 1.0000e-02.
+
+Test set: Average loss: 0.0190, Accuracy: 9936/10000 (99.36%)
+
+Epoch 10
+Train: Loss=0.0800 Batch_id=468 Accuracy=98.34: 100%|██████████| 469/469 [00:26<00:00, 17.44it/s]Adjusting learning rate of group 0 to 1.0000e-02.
+
+Test set: Average loss: 0.0186, Accuracy: 9942/10000 (99.42%)
+
+Epoch 11
+Train: Loss=0.0219 Batch_id=468 Accuracy=98.45: 100%|██████████| 469/469 [00:26<00:00, 17.87it/s]Adjusting learning rate of group 0 to 1.0000e-02.
+
+Test set: Average loss: 0.0189, Accuracy: 9942/10000 (99.42%)
+
+Epoch 12
+Train: Loss=0.0387 Batch_id=468 Accuracy=98.50: 100%|██████████| 469/469 [00:25<00:00, 18.15it/s]Adjusting learning rate of group 0 to 1.0000e-02.
+
+Test set: Average loss: 0.0182, Accuracy: 9940/10000 (99.40%)
+
+Epoch 13
+Train: Loss=0.0534 Batch_id=468 Accuracy=98.46: 100%|██████████| 469/469 [00:26<00:00, 18.03it/s]Adjusting learning rate of group 0 to 1.0000e-02.
+
+Test set: Average loss: 0.0186, Accuracy: 9940/10000 (99.40%)
+
+Epoch 14
+Train: Loss=0.0075 Batch_id=468 Accuracy=98.55: 100%|██████████| 469/469 [00:26<00:00, 17.68it/s]Adjusting learning rate of group 0 to 1.0000e-02.
+
+Test set: Average loss: 0.0184, Accuracy: 9941/10000 (99.41%)
+
+Epoch 15
+Train: Loss=0.0594 Batch_id=468 Accuracy=98.48: 100%|██████████| 469/469 [00:26<00:00, 17.49it/s]Adjusting learning rate of group 0 to 1.0000e-02.
+
+Test set: Average loss: 0.0183, Accuracy: 9942/10000 (99.42%)
+  ```
+
+  <b>Train/Test Visualization</b>
+
+  ![]()
