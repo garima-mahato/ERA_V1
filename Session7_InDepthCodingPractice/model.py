@@ -18,7 +18,7 @@ class Model_6(nn.Module):
             nn.ReLU(),
             nn.BatchNorm2d(8),
             nn.Dropout(dropout_value)
-        ) # input_size = 28x28x1, output_size = 26x26x16, RF = 3x3
+        ) # input_size = 28x28x1, output_size = 26x26x8, RF = 3x3
 
         # CONVOLUTION BLOCK 1
         self.convblock2 = nn.Sequential(
@@ -26,12 +26,12 @@ class Model_6(nn.Module):
             nn.ReLU(),
             nn.BatchNorm2d(12),
             nn.Dropout(dropout_value)
-        ) # input_size = 26x26x16, output_size = 24x24x24, RF = 5x5
+        ) # input_size = 26x26x8, output_size = 24x24x12, RF = 5x5
 
         # TRANSITION BLOCK 1
         self.convblock3 = nn.Sequential(
             nn.Conv2d(in_channels=12, out_channels=10, kernel_size=(1, 1), padding=0, bias=False),
-        ) # input_size = 24x24x24, output_size = 24x24x10, RF = 5x5
+        ) # input_size = 24x24x12, output_size = 24x24x10, RF = 5x5
         self.pool1 = nn.MaxPool2d(2, 2) # input_size = 24x24x10, output_size = 12x12x10, RF = 6x6
 
         # CONVOLUTION BLOCK 2
@@ -52,20 +52,20 @@ class Model_6(nn.Module):
             nn.ReLU(),
             nn.BatchNorm2d(20),
             nn.Dropout(dropout_value)
-        ) # input_size = 10x10x14, output_size = 8x8x16, RF = 14x14
+        ) # input_size = 8x8x16, output_size = 6x6x20, RF = 18x18
 
         # OUTPUT BLOCK
         self.gap = nn.Sequential(
             nn.AvgPool2d(kernel_size=6)
-        ) # input_size = 6x6x16, output_size = 1x1x16, RF = 38x38
+        ) # input_size = 6x6x20, output_size = 1x1x20, RF = 28x28
 
         self.convblock7 = nn.Sequential(
             nn.Conv2d(in_channels=20, out_channels=16, kernel_size=(1, 1), padding=0, bias=False)
-        ) # input_size = 1x1x16, output_size = 1x1x32, RF = 38x38
+        ) # input_size = 1x1x20, output_size = 1x1x16, RF = 28x28
 
         self.convblock8 = nn.Sequential(
             nn.Conv2d(in_channels=16, out_channels=10, kernel_size=(1, 1), padding=0, bias=False)
-        ) # input_size = 1x1x16, output_size = 1x1x32, RF = 38x38
+        ) # input_size = 1x1x16, output_size = 1x1x10, RF = 28x28
 
         self.dropout = nn.Dropout(dropout_value)
 
@@ -95,7 +95,7 @@ class Model_7(nn.Module):
             nn.ReLU(),
             nn.BatchNorm2d(8),
             nn.Dropout(dropout_value)
-        ) # input_size = 28x28x1, output_size = 26x26x16, RF = 3x3
+        ) # input_size = 28x28x1, output_size = 26x26x8, RF = 3x3
 
         # CONVOLUTION BLOCK 1
         self.convblock2 = nn.Sequential(
@@ -103,12 +103,12 @@ class Model_7(nn.Module):
             nn.ReLU(),
             nn.BatchNorm2d(14),
             nn.Dropout(dropout_value)
-        ) # input_size = 26x26x16, output_size = 24x24x24, RF = 5x5
+        ) # input_size = 26x26x8, output_size = 24x24x14, RF = 5x5
 
         # TRANSITION BLOCK 1
         self.convblock3 = nn.Sequential(
             nn.Conv2d(in_channels=14, out_channels=10, kernel_size=(1, 1), padding=0, bias=False),
-        ) # input_size = 24x24x24, output_size = 24x24x10, RF = 5x5
+        ) # input_size = 24x24x14, output_size = 24x24x10, RF = 5x5
         self.pool1 = nn.MaxPool2d(2, 2) # input_size = 24x24x10, output_size = 12x12x10, RF = 6x6
 
         # CONVOLUTION BLOCK 2
@@ -129,20 +129,20 @@ class Model_7(nn.Module):
             nn.ReLU(),
             nn.BatchNorm2d(20),
             nn.Dropout(dropout_value)
-        ) # input_size = 10x10x14, output_size = 8x8x16, RF = 14x14
+        ) # input_size = 8x8x16, output_size = 6x6x20, RF = 18x18
 
         # OUTPUT BLOCK
         self.gap = nn.Sequential(
             nn.AvgPool2d(kernel_size=6)
-        ) # input_size = 6x6x16, output_size = 1x1x16, RF = 38x38
+        ) # input_size = 6x6x20, output_size = 1x1x20, RF = 28x28
 
         self.convblock7 = nn.Sequential(
             nn.Conv2d(in_channels=20, out_channels=16, kernel_size=(1, 1), padding=0, bias=False)
-        ) # input_size = 1x1x16, output_size = 1x1x32, RF = 38x38
+        ) # input_size = 1x1x20, output_size = 1x1x16, RF = 28x28
 
         self.convblock8 = nn.Sequential(
             nn.Conv2d(in_channels=16, out_channels=10, kernel_size=(1, 1), padding=0, bias=False)
-        ) # input_size = 1x1x16, output_size = 1x1x32, RF = 38x38
+        ) # input_size = 1x1x16, output_size = 1x1x10, RF = 28x28
 
         self.dropout = nn.Dropout(dropout_value)
 
