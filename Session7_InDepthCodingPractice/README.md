@@ -1,14 +1,16 @@
 # MNIST-trained Model with 99.4% test accuracy in < 8K Parameters and <15 epochs
 
+##### Trial Summary
+
 | S.No. | File Name | Highlight |Targets | Results | Analysis | File Link |
 |---|---|---|---|---|---|---|
-|1|S7_File1 | Basic Skeleton Creation|Create a basic skeleton with less than 8K parameters which is able to reach 99% in less than 15 epochs. The basic skeleton was created based on the expand and squeeze architecture.|<ul><li>Best Train Accuracy - 99.59%</li><li> Best Test Accuracy - 99.27%</li><li>Total Parameters - 8000</li></ul>|Good starting model but high overfitting|[Open]()|
-|2|S7_File2 | Improving the Basic Model (Reducing Overfitting)| Improve the basic model by reducing overfitting. Added dropout of 0.05 to reduce overfitting. With the basic model, I was able to achieve 99.4% accuracy when trained for around 40 epochs. This means that the model has the capacity to reach 99.4%. So, after adding dropout, I added step LR starting at 0.1 and reducing by 0.1 at every 4 epochs. These 2 numbers were found after experimenting.|<ul><li>Best Train Accuracy - 98.54%</li><li> Best Test Accuracy - 99.38%</li><li>Total Parameters - 8000</li></ul>|Overfitting reduced and was consistently able to maintain 99.3% test accuracy. Increasing the learning rate to 0.1 helped to reach higher accuracy sooner and gradually decreasing the learning rate by 0.1 helped in achieving stable results. Giving more training sample can improve the learning of the model.|[Open]()|
-|3|S7_File3 | Improving the Model (Image Augmentation, Batch Size(Sweet Spot), Regularization)|Improve the model learning by:<ol><li>Adding image augmentation</li><li>Reducing batch size</li><li>Adding regularization at correct position with reduced batch size</li><ol>|<ul><li>Best Train Accuracy - 98.55%</li><li> Best Test Accuracy - 99.42%</li><li>Total Parameters - 8000</li></ul>|<ol><li>Adding image augmentation of scaling, translation and rotation increased the difficulty of model's training so we see an improvement in the test accuracy</li><li>Reducing batch size from 512 to 128 improved the generalization capability of the model on the test dataset and brought the test accuracy in the 99.4% threshold. 128 batch size is the sweet spot for this model, below which the test accuracy degrades. This is due to the existence to “noise” in small batch size training. Because neural network systems are extremely prone to overfitting, upon seeing many small batch size, each batch being a “noisy” representation of the entire dataset, will cause a sort of “tug-and-pull” dynamic. This “tug-and-pull” dynamic prevents the neural network from overfitting on the training set and hence performing badly on the test set.</li><li>Adding STEP LR at correct position of 8 epochs instead of 4. This helped in reducing the epochs for achieving 99.% test accuracy consistently.</li><ol>With the above experimentation, I was able to achieve 99.4% test accuracy consistently.|[Open]()|
+|1|S7_File1 | Basic Skeleton Creation|Create a basic skeleton with less than 8K parameters which is able to reach 99% in less than 15 epochs. The basic skeleton was created based on the expand and squeeze architecture.|<ul><li>Best Train Accuracy - 99.59%</li><li> Best Test Accuracy - 99.27%</li><li>Total Parameters - 8000</li></ul>|Good starting model but high overfitting|[Open](https://github.com/garima-mahato/ERA_V1/blob/main/Session7_InDepthCodingPractice/S7_File1.ipynb)|
+|2|S7_File2 | Improving the Basic Model (Reducing Overfitting)| Improve the basic model by reducing overfitting. Added dropout of 0.05 to reduce overfitting. With the basic model, I was able to achieve 99.4% accuracy when trained for around 40 epochs. This means that the model has the capacity to reach 99.4%. So, after adding dropout, I added step LR starting at 0.1 and reducing by 0.1 at every 4 epochs. These 2 numbers were found after experimenting.|<ul><li>Best Train Accuracy - 98.54%</li><li> Best Test Accuracy - 99.38%</li><li>Total Parameters - 8000</li></ul>|Overfitting reduced and was consistently able to maintain 99.3% test accuracy. Increasing the learning rate to 0.1 helped to reach higher accuracy sooner and gradually decreasing the learning rate by 0.1 helped in achieving stable results. Giving more training sample can improve the learning of the model.|[Open](https://github.com/garima-mahato/ERA_V1/blob/main/Session7_InDepthCodingPractice/S7_File2.ipynb)|
+|3|S7_File3 | Improving the Model (Image Augmentation, Batch Size(Sweet Spot), Regularization)|Improve the model learning by:<ol><li>Adding image augmentation</li><li>Reducing batch size</li><li>Adding regularization at correct position with reduced batch size</li><ol>|<ul><li>Best Train Accuracy - 98.55%</li><li> Best Test Accuracy - 99.42%</li><li>Total Parameters - 8000</li></ul>|<ol><li>Adding image augmentation of scaling, translation and rotation increased the difficulty of model's training so we see an improvement in the test accuracy</li><li>Reducing batch size from 512 to 128 improved the generalization capability of the model on the test dataset and brought the test accuracy in the 99.4% threshold. 128 batch size is the sweet spot for this model, below which the test accuracy degrades. This is due to the existence to “noise” in small batch size training. Because neural network systems are extremely prone to overfitting, upon seeing many small batch size, each batch being a “noisy” representation of the entire dataset, will cause a sort of “tug-and-pull” dynamic. This “tug-and-pull” dynamic prevents the neural network from overfitting on the training set and hence performing badly on the test set.</li><li>Adding STEP LR at correct position of 8 epochs instead of 4. This helped in reducing the epochs for achieving 99.% test accuracy consistently.</li><ol>With the above experimentation, I was able to achieve 99.4% test accuracy consistently.|[Open](https://github.com/garima-mahato/ERA_V1/blob/main/Session7_InDepthCodingPractice/S7_File3.ipynb)|
 
 ---
 
-### Model Architecture
+### Final Model Architecture
 
 ```
 ----------------------------------------------------------------
@@ -63,6 +65,15 @@ Estimated Total Size (MB): 0.60
 | Output Block | GAP | 6x6x20 | 1x1x20 | 28x28 |
 | Output Block | FC | 1x1x20 | 1x1x16 | 28x28 |
 | Output Block | FC | 1x1x16 | 1x1x10 | 28x28 | 
+
+##### Final Results: 
+  - Best Train Accuracy - 98.55%
+  - Best Test Accuracy - 99.42%
+  - Total Parameters - 8000
+
+---
+
+# Trials Details
 
 ## S7_File1: Basic Skeleton Creation
 
@@ -144,7 +155,7 @@ Test set: Average loss: 0.0247, Accuracy: 9927/10000 (99.27%)
 
 <b>Train/Test Visualization</b>
 
-![]()
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session7_InDepthCodingPractice/assets/s7_file1_train_test_acc_loss.png)
 
 ---
 
@@ -354,4 +365,4 @@ Test set: Average loss: 0.0183, Accuracy: 9942/10000 (99.42%)
 
   <b>Train/Test Visualization</b>
 
-  ![]()
+  ![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session7_InDepthCodingPractice/assets/s7_file3_train_test_acc_loss.png)
