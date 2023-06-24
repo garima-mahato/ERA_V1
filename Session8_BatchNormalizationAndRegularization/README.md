@@ -39,13 +39,16 @@
 
 7) Upload your complete assignment on GitHub and share the link on LMS
 
-##### Trial Summary
+##### Normalization Summary
 
-| S.No. | File Name | Highlight |Targets | Results | Analysis | File Link |
-|---|---|---|---|---|---|---|
-|1|S7_File1 | Basic Skeleton Creation|Create a basic skeleton with less than 8K parameters which is able to reach 99% in less than 15 epochs. The basic skeleton was created based on the expand and squeeze architecture.|<ul><li>Best Train Accuracy - 99.59%</li><li> Best Test Accuracy - 99.27%</li><li>Total Parameters - 8000</li></ul>|Good starting model but high overfitting|[Open](https://github.com/garima-mahato/ERA_V1/blob/main/Session7_InDepthCodingPractice/S7_File1.ipynb)|
-|2|S7_File2 | Improving the Basic Model (Reducing Overfitting)| Improve the basic model by reducing overfitting. Added dropout of 0.05 to reduce overfitting. With the basic model, I was able to achieve 99.4% accuracy when trained for around 40 epochs. This means that the model has the capacity to reach 99.4%. So, after adding dropout, I added step LR starting at 0.1 and reducing by 0.1 at every 4 epochs. These 2 numbers were found after experimenting.|<ul><li>Best Train Accuracy - 98.54%</li><li> Best Test Accuracy - 99.38%</li><li>Total Parameters - 8000</li></ul>|Overfitting reduced and was consistently able to maintain 99.3% test accuracy. Increasing the learning rate to 0.1 helped to reach higher accuracy sooner and gradually decreasing the learning rate by 0.1 helped in achieving stable results. Giving more training sample can improve the learning of the model.|[Open](https://github.com/garima-mahato/ERA_V1/blob/main/Session7_InDepthCodingPractice/S7_File2.ipynb)|
-|3|S7_File3 | Improving the Model (Image Augmentation, Batch Size(Sweet Spot), Regularization)|Improve the model learning by:<ol><li>Adding image augmentation</li><li>Reducing batch size</li><li>Adding regularization at correct position with reduced batch size</li><ol>|<ul><li>Best Train Accuracy - 98.55%</li><li> Best Test Accuracy - 99.42%</li><li>Total Parameters - 8000</li></ul>|<ol><li>Adding image augmentation of scaling, translation and rotation increased the difficulty of model's training so we see an improvement in the test accuracy</li><li>Reducing batch size from 512 to 128 improved the generalization capability of the model on the test dataset and brought the test accuracy in the 99.4% threshold. 128 batch size is the sweet spot for this model, below which the test accuracy degrades. This is due to the existence to “noise” in small batch size training. Because neural network systems are extremely prone to overfitting, upon seeing many small batch size, each batch being a “noisy” representation of the entire dataset, will cause a sort of “tug-and-pull” dynamic. This “tug-and-pull” dynamic prevents the neural network from overfitting on the training set and hence performing badly on the test set.</li><li>Adding STEP LR at correct position of 8 epochs instead of 4. This helped in reducing the epochs for achieving 99.4% test accuracy consistently.</li><ol>With the above experimentation, I was able to achieve 99.4% test accuracy consistently.|[Open](https://github.com/garima-mahato/ERA_V1/blob/main/Session7_InDepthCodingPractice/S7_File3.ipynb)|
+| S.No. | Normalization Type | Results | Analysis | File Link |
+|---|---|---|---|---|
+|1|Batch Normalization |<ul><li>Best Train Accuracy - 82.59%</li><li> Best Test Accuracy - 79.60%</li><li> Test Accuracy - 79.39%</li><li>Total Parameters - 39,420</li></ul>|Better Performing Model with Lesser Parameters |[Open](https://github.com/garima-mahato/ERA_V1/blob/main/Session8_BatchNormalizationAndRegularization/BatchNormalization/S8_Assignment_CIFAR10_BN.ipynb)|
+|2|Group Normalization | <ul><li>Best Train Accuracy - 84.09%</li><li> Best Test Accuracy - 77.35%</li><li> Test Accuracy - 76.84%</li><li>Total Parameters - 40,360</li></ul>| The number of parameters increases on replacing batch normalization with group normalization. In order to keep the parameters within limits, the model capacity is decreased by decreasing number of channels. This leads to drop in model's performance. |[Open](https://github.com/garima-mahato/ERA_V1/blob/main/Session8_BatchNormalizationAndRegularization/BatchNormalization/S8_Assignment_CIFAR10_GN.ipynb)|
+|3|Layer Normalization | <ul><li>Best Train Accuracy - 76.42% </li><li> Best Test Accuracy - 68.48%</li><li> Test Accuracy - 68.48%</li><li>Total Parameters - 55,612</li></ul>| The number of parameters increases a lot and it becomes difficult to constrain the parameters count within limit(50K). For this model's capacity is decreased since not much scope for changing model's structure. This leads to decrease in performance. |[Open](https://github.com/garima-mahato/ERA_V1/blob/main/Session8_BatchNormalizationAndRegularization/BatchNormalization/S8_Assignment_CIFAR10_LN.ipynb)|
+
+
+#### With CIFAR10 as the dataset: Among the 3 normalization, Batch Normalization gives the best performance with minimum parameters. This is because the number of parameters belonging to batch normalization is minimum among the 3 and so there is a scope of increasing model's capacity.
 
 ---
 
@@ -53,7 +56,7 @@
 
 ### Model Architecture
 
-![]()
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session8_BatchNormalizationAndRegularization/assets/cifar10_bn_torchviz.png)
 
 ```
 ----------------------------------------------------------------
@@ -108,19 +111,6 @@ Params size (MB): 0.15
 Estimated Total Size (MB): 2.67
 ----------------------------------------------------------------
 ```
-
-| Block | Layer | Input Size | Output Size | Receptive Field |
-|---|---|---|---|---|
-| Input Block | Conv2D(3x3) | 28x28x1 | 26x26x8 | 3x3 |
-| Convolution Block 1 | Conv2D(3x3) | 26x26x8 | 24x24x14 | 5x5 |
-| Transition Block 1 | Conv2D(1x1) | 24x24x14 | 24x24x10 | 5x5 |
-| Convolution Block 1 | Max Pool(2x2) | 24x24x10 | 12x12x10 | 6x6 |
-| Convolution Block 1 | Conv2D(3x3) | 12x12x10 | 10x10x14 | 10x10 |
-| Convolution Block 1 | Conv2D(3x3) | 10x10x14 | 8x8x16 | 14x14 |
-| Convolution Block 1 | Conv2D(3x3) | 8x8x16 | 6x6x20 | 18x18 |
-| Output Block | GAP | 6x6x20 | 1x1x20 | 28x28 |
-| Output Block | FC | 1x1x20 | 1x1x16 | 28x28 |
-| Output Block | FC | 1x1x16 | 1x1x10 | 28x28 | 
 
 ##### Results: 
   - Best Train Accuracy - 82.59%
@@ -249,7 +239,7 @@ Test set: Average loss: 0.5914, Accuracy: 7939/10000 (79.39%)
 
 ### Model Architecture
 
-![]()
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session8_BatchNormalizationAndRegularization/assets/cifar10_gn_torchviz.png)
 
 ```
 ----------------------------------------------------------------
@@ -306,18 +296,6 @@ Estimated Total Size (MB): 2.67
 
 ```
 
-| Block | Layer | Input Size | Output Size | Receptive Field |
-|---|---|---|---|---|
-| Input Block | Conv2D(3x3) | 28x28x1 | 26x26x8 | 3x3 |
-| Convolution Block 1 | Conv2D(3x3) | 26x26x8 | 24x24x14 | 5x5 |
-| Transition Block 1 | Conv2D(1x1) | 24x24x14 | 24x24x10 | 5x5 |
-| Convolution Block 1 | Max Pool(2x2) | 24x24x10 | 12x12x10 | 6x6 |
-| Convolution Block 1 | Conv2D(3x3) | 12x12x10 | 10x10x14 | 10x10 |
-| Convolution Block 1 | Conv2D(3x3) | 10x10x14 | 8x8x16 | 14x14 |
-| Convolution Block 1 | Conv2D(3x3) | 8x8x16 | 6x6x20 | 18x18 |
-| Output Block | GAP | 6x6x20 | 1x1x20 | 28x28 |
-| Output Block | FC | 1x1x20 | 1x1x16 | 28x28 |
-| Output Block | FC | 1x1x16 | 1x1x10 | 28x28 | 
 
 ##### Results: 
   - Best Train Accuracy - 84.09%
@@ -425,7 +403,7 @@ Test set: Average loss: 0.6781, Accuracy: 7684/10000 (76.84%)
 
 ### Model Architecture
 
-![]()
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session8_BatchNormalizationAndRegularization/assets/cifar10_ln_torchviz.png)
 
 ```
 ----------------------------------------------------------------
@@ -482,18 +460,6 @@ Estimated Total Size (MB): 1.03
 
 ```
 
-| Block | Layer | Input Size | Output Size | Receptive Field |
-|---|---|---|---|---|
-| Input Block | Conv2D(3x3) | 28x28x1 | 26x26x8 | 3x3 |
-| Convolution Block 1 | Conv2D(3x3) | 26x26x8 | 24x24x14 | 5x5 |
-| Transition Block 1 | Conv2D(1x1) | 24x24x14 | 24x24x10 | 5x5 |
-| Convolution Block 1 | Max Pool(2x2) | 24x24x10 | 12x12x10 | 6x6 |
-| Convolution Block 1 | Conv2D(3x3) | 12x12x10 | 10x10x14 | 10x10 |
-| Convolution Block 1 | Conv2D(3x3) | 10x10x14 | 8x8x16 | 14x14 |
-| Convolution Block 1 | Conv2D(3x3) | 8x8x16 | 6x6x20 | 18x18 |
-| Output Block | GAP | 6x6x20 | 1x1x20 | 28x28 |
-| Output Block | FC | 1x1x20 | 1x1x16 | 28x28 |
-| Output Block | FC | 1x1x16 | 1x1x10 | 28x28 | 
 
 ##### Results: 
   - Best Train Accuracy - 76.42%
