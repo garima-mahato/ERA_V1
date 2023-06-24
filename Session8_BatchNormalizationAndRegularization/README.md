@@ -237,7 +237,11 @@ Test set: Average loss: 0.5914, Accuracy: 7939/10000 (79.39%)
 
 <b>Train/Test Visualization</b>
 
-![]()
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session8_BatchNormalizationAndRegularization/assets/bn_train_test_acc_loss_comp.png)
+
+<b>10 Mis-classified Images </b>
+
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session8_BatchNormalizationAndRegularization/assets/cifar10_batch_norm_misclassified_imgs.png)
 
 ---
 
@@ -409,7 +413,11 @@ Test set: Average loss: 0.6781, Accuracy: 7684/10000 (76.84%)
 
 <b>Train/Test Visualization</b>
 
-![]()
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session8_BatchNormalizationAndRegularization/assets/gn_train_test_acc_loss_comp.png)
+
+<b>10 Mis-classified Images </b>
+
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session8_BatchNormalizationAndRegularization/assets/cifar10_group_norm_misclassified_imgs.png)
 
 ---
 
@@ -603,6 +611,8 @@ Test set: Average loss: 0.9115, Accuracy: 6848/10000 (68.48%)
 
 <b>Train/Test Visualization</b>
 
-![]()
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session8_BatchNormalizationAndRegularization/assets/ln_train_test_acc_loss_comp.png)
 
----
+<b>10 Mis-classified Images </b>
+
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session8_BatchNormalizationAndRegularization/assets/cifar10_layer_norm_misclassified_imgs.png)
