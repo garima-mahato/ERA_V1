@@ -19,6 +19,23 @@ import time
 import numpy as np
 import random
 
+###############################################################
+
+def save_network(path, model_file_name, model, train_losses, test_losses, train_acc, test_acc):
+    print("\n Saving trained model and parameters...")
+    torch.save(model.state_dict(), path+"/"+model_file_name+".pth")
+    # save train and test losses and accuracies
+    train_test_data = {"Training Loss": train_losses, "Test Loss": test_losses, "Training Accuracy": train_acc, "Test Accuracy": test_acc}
+    torch.save(train_test_data, path+"/"+model_file_name+"_train_test_params.pt")
+
+def load_network(path, model_file_name, model, device):
+    print("\n Loading trained model...")
+    model = model.to(device)
+    model.load_state_dict(torch.load(path+"/"+model_file_name+".pth"))
+
+
+###############################################################
+
 def find_custom_dataset_mean_std(DATA_PATH, cuda):
   num_of_inp_channels = 3
   simple_transforms = transforms.Compose([
