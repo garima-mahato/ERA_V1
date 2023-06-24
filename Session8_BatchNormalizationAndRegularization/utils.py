@@ -149,7 +149,7 @@ def classify_images(model, test_loader, device, max_imgs=25):
   return misclassified_imgs, correct_imgs
 
 def plot_images(images, PATH, name="fig", sub_folder_name="/visualization", is_cifar10 = True, labels_list=None):
-  cols = 5
+  cols = 2
   rows = math.ceil(len(images) / cols)
   fig = plt.figure(figsize=(20,10))
 
