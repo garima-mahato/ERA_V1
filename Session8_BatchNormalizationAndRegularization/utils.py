@@ -161,7 +161,7 @@ def plot_images(images, PATH, name="fig", sub_folder_name="/visualization", is_c
     if is_cifar10:
       CIFAR10_CLASS_LABELS = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
       plt.title(f"{i+1}) Ground Truth: {CIFAR10_CLASS_LABELS[images[i]['target']]},\n Prediction: {CIFAR10_CLASS_LABELS[images[i]['pred']]}")
-    if labels_list is not None:
+    elif labels_list is not None:
       plt.title(f"{i+1}) Ground Truth: {labels_list[images[i]['target']]},\n Prediction: {labels_list[images[i]['pred']]}")
     else:
       plt.title(f"{i+1}) Ground Truth: {images[i]['target']},\n Prediction: {images[i]['pred']}")
