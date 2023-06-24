@@ -606,3 +606,127 @@ class CIFAR10_Classifier_LN(nn.Module):
         y1 = y1.view(-1, 10)
 
         return F.log_softmax(y1, dim=-1)
+    
+class CIFAR10_Classifier_LN_Modified(nn.Module):
+
+    def __init__(self, dropout_value=0):
+        super(CIFAR10_Classifier_LN, self).__init__()
+        # Input Block C1
+        self.convblock1 = nn.Sequential(
+            nn.Conv2d(in_channels=3, out_channels=8, kernel_size=(3, 3), padding=0, bias=False),
+            nn.ReLU(),
+            nn.LayerNorm([8,30,30]),
+            nn.Dropout(dropout_value)
+        ) # input_size = 32x32x3, output_size = 32x32x8, RF = 3x3
+
+        # CONVOLUTION BLOCK 1 C2
+        self.convblock2 = nn.Sequential(
+            nn.Conv2d(in_channels=8, out_channels=10, kernel_size=(3, 3), padding=0, bias=False),
+            nn.ReLU(),
+            nn.LayerNorm([10,28,28]),
+            nn.Dropout(dropout_value)
+        ) 
+
+        # TRANSITION BLOCK 1 c3
+        self.convblock3 = nn.Sequential(
+            nn.Conv2d(in_channels=10, out_channels=8, kernel_size=(1, 1), padding=0, bias=False),
+        )
+        self.shortcut1 = nn.Sequential()
+
+        # P1
+        self.pool1 = nn.MaxPool2d(2, 2) 
+
+        # CONVOLUTION BLOCK 2 C3
+        self.convblock4 = nn.Sequential(
+            nn.Conv2d(in_channels=8, out_channels=10, kernel_size=(3, 3), padding=1, bias=False),
+            nn.ReLU(),
+            nn.LayerNorm([10,14,14]),
+            nn.Dropout(dropout_value)
+        ) 
+
+        # C4
+        self.convblock5 = nn.Sequential(
+            nn.Conv2d(in_channels=10, out_channels=12, kernel_size=(3, 3), padding=1, bias=False),
+            nn.ReLU(),
+            nn.LayerNorm([12,14,14]),
+            nn.Dropout(dropout_value)
+        )
+
+        # C5
+        self.convblock6 = nn.Sequential(
+            nn.Conv2d(in_channels=12, out_channels=14, kernel_size=(3, 3), padding=1, bias=False),
+            nn.ReLU(),
+            nn.LayerNorm([14,14,14]),
+            nn.Dropout(dropout_value)
+        ) 
+
+        # TRANSITION BLOCK 1 c6
+        self.convblock7 = nn.Sequential(
+            nn.Conv2d(in_channels=14, out_channels=8, kernel_size=(1, 1), padding=0, bias=False),
+        ) 
+        self.shortcut2 = nn.Sequential()
+
+        # P2
+        self.pool2 = nn.MaxPool2d(2, 2) 
+
+         # CONVOLUTION BLOCK 2 C7
+        self.convblock8 = nn.Sequential(
+            nn.Conv2d(in_channels=8, out_channels=10, kernel_size=(3, 3), padding=1, bias=False),
+            nn.ReLU(),
+            nn.LayerNorm([10,7,7]),
+            nn.Dropout(dropout_value)
+        ) 
+
+        # C8
+        self.convblock9 = nn.Sequential(
+            nn.Conv2d(in_channels=10, out_channels=12, kernel_size=(3, 3), padding=1, bias=False),
+            nn.ReLU(),
+            nn.LayerNorm([12,7,7]),
+            nn.Dropout(dropout_value)
+        ) 
+
+        # C9
+        self.convblock10 = nn.Sequential(
+            nn.Conv2d(in_channels=12, out_channels=14, kernel_size=(3, 3), padding=1, bias=False),
+            nn.ReLU(),
+            nn.LayerNorm([14,7,7]),
+            nn.Dropout(dropout_value)
+        ) 
+
+        # OUTPUT BLOCK GAP
+        self.gap = nn.Sequential(
+            nn.AvgPool2d(kernel_size=7)
+        ) 
+
+        # C10
+        self.convblock11 = nn.Sequential(
+            nn.Conv2d(in_channels=14, out_channels=10, kernel_size=(1, 1), padding=0, bias=False)
+        )
+
+        self.dropout = nn.Dropout(dropout_value)
+
+
+    def forward(self, x):
+        x = self.convblock1(x)
+        y = self.convblock2(x)
+        y = self.convblock3(y)
+        # y += self.shortcut1(x)
+        # y = F.relu(y)
+
+        y = self.pool1(y)
+        y1 = self.convblock4(y)
+        y1 = self.convblock5(y1)
+        y1 = self.convblock6(y1)
+        y1 = self.convblock7(y1)
+        y1 += self.shortcut2(y)
+        y1 = F.relu(y1)
+
+        y1 = self.pool2(y1)
+        y1 = self.convblock8(y1)
+        y1 = self.convblock9(y1)
+        y1 = self.convblock10(y1)
+        y1 = self.gap(y1)
+        y1 = self.convblock11(y1)
+        y1 = y1.view(-1, 10)
+
+        return F.log_softmax(y1, dim=-1)
