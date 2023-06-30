@@ -3,7 +3,8 @@ import math
 import numpy
 import cv2
 import torch
-from torchvision import datasets, transforms
+from torchvision import datasets
+from torchvision import transforms as tf
 from albumentations import *
 from albumentations.pytorch import ToTensorV2
 
@@ -29,10 +30,10 @@ class AlbumentationTransformations():
 
 
 def augment_data(means, stdevs):
-  transformations = transforms.Compose([
-    transforms.RandomCrop(32, padding=4),
-    transforms.RandomHorizontalFlip(),
-    transforms.ToTensor(),
-    transforms.Normalize(means, stdevs)
+  transformations = tf.Compose([
+    tf.RandomCrop(32, padding=4),
+    tf.RandomHorizontalFlip(),
+    tf.ToTensor(),
+    tf.Normalize(means, stdevs)
   ])
   return transformations
