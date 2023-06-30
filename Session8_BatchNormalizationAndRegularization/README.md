@@ -1,4 +1,4 @@
-# Session 8 - Batch Normalizatio and Regularization
+# Session 8 - Batch Normalization and Regularization
 
 #### Assignment
 
