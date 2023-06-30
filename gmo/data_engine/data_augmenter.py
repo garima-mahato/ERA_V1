@@ -5,7 +5,7 @@ import cv2
 import torch
 from torchvision import datasets, transforms
 from albumentations import *
-from albumentations.pytorch import ToTensor
+from albumentations.pytorch import ToTensorV2
 
 # custom transformations from albumentations library
 class AlbumentationTransformations():
@@ -19,7 +19,7 @@ class AlbumentationTransformations():
       CoarseDropout (max_holes = 1, max_height=16, max_width=16, min_holes = 1, min_height=16, min_width=16, fill_value=self.means, mask_fill_value = None),
 	    # Cutout(num_holes=1, max_h_size=8, max_w_size=8, fill_value=self.means*255.0, p=0.75),
       Normalize(mean=self.means, std=self.stdevs),
-      ToTensor()
+      ToTensorV2()
     ])
         
   def __call__(self, img):
