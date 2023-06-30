@@ -754,84 +754,86 @@ class CIFAR10_NoMPNetwork(nn.Module):
         super(CIFAR10_NoMPNetwork, self).__init__()
         # Input Block 
         self.inpblock = nn.Sequential(
-            nn.Conv2d(in_channels=3, out_channels=32, kernel_size=(3, 3), padding=1, bias=False),
+            nn.Conv2d(in_channels=3, out_channels=16, kernel_size=(3, 3), padding=1, bias=False),
             nn.ReLU(),
-            nn.BatchNorm2d(32),
+            nn.BatchNorm2d(16),
             nn.Dropout(dropout_value),
         )
 
         # C1
         self.convblock1 = nn.Sequential(
-            nn.Conv2d(in_channels=32, out_channels=64, kernel_size=(3, 3), padding=1, bias=False),
+            nn.Conv2d(in_channels=16, out_channels=24, kernel_size=(3, 3), padding=1, bias=False),
+            nn.ReLU(),
+            nn.BatchNorm2d(24),
+            nn.Dropout(dropout_value),
+
+            nn.Conv2d(in_channels=24, out_channels=32, kernel_size=(3, 3), padding=1, bias=False),
+            nn.ReLU(),
+            nn.BatchNorm2d(32),
+            nn.Dropout(dropout_value),
+
+            nn.Conv2d(in_channels=32, out_channels=64, kernel_size=(3, 3), padding=0, bias=False, dilation=2),
             nn.ReLU(),
             nn.BatchNorm2d(64),
-            nn.Dropout(dropout_value),
-
-            nn.Conv2d(in_channels=64, out_channels=128, kernel_size=(3, 3), padding=1, bias=False),
-            nn.ReLU(),
-            nn.BatchNorm2d(128),
-            nn.Dropout(dropout_value),
-
-            nn.Conv2d(in_channels=128, out_channels=256, kernel_size=(3, 3), padding=0, bias=False, dilation=2),
-            nn.ReLU(),
-            nn.BatchNorm2d(256),
             nn.Dropout(dropout_value),
         ) # input_size = 32x32x3, output_size = 32x32x16, RF = 3x3
 
         # TRANSITION BLOCK 1 T1
         self.transitionblock1 = nn.Sequential(
-            nn.Conv2d(in_channels=256, out_channels=64, kernel_size=(1, 1), padding=0, bias=False),
+            nn.Conv2d(in_channels=64, out_channels=32, kernel_size=(1, 1), padding=0, bias=False),
         ) 
         self.shortcut1 = nn.Sequential()
 
         # CONVOLUTION BLOCK 2 C2
         self.convblock2 = nn.Sequential(
-            nn.Conv2d(in_channels=64, out_channels=128, kernel_size=(3, 3), padding=1, bias=False),
+            nn.Conv2d(in_channels=32, out_channels=48, kernel_size=(3, 3), padding=1, bias=False),
+            nn.ReLU(),
+            nn.BatchNorm2d(48),
+            nn.Dropout(dropout_value),
+
+            nn.Conv2d(in_channels=48, out_channels=64, kernel_size=(3, 3), padding=1, bias=False),
+            # SeparableConv2d(in_channels=64, out_channels=128, kernel_size=1, stride=1, padding=1, dilation=1, bias=False),
+            nn.ReLU(),
+            nn.BatchNorm2d(64),
+            nn.Dropout(dropout_value),
+
+            nn.Conv2d(in_channels=64, out_channels=128, kernel_size=(3, 3), padding=0, bias=False, dilation=2),
             nn.ReLU(),
             nn.BatchNorm2d(128),
-            nn.Dropout(dropout_value),
-
-            nn.Conv2d(in_channels=128, out_channels=256, kernel_size=(3, 3), padding=1, bias=False),
-            nn.ReLU(),
-            nn.BatchNorm2d(256),
-            nn.Dropout(dropout_value),
-
-            nn.Conv2d(in_channels=256, out_channels=512, kernel_size=(3, 3), padding=0, bias=False, dilation=2),
-            nn.ReLU(),
-            nn.BatchNorm2d(512),
             nn.Dropout(dropout_value)
         ) 
 
         # TRANSITION BLOCK 2 T2
         self.transitionblock2 = nn.Sequential(
-            nn.Conv2d(in_channels=512, out_channels=64, kernel_size=(1, 1), padding=0, bias=False),
+            nn.Conv2d(in_channels=128, out_channels=32, kernel_size=(1, 1), padding=0, bias=False),
         ) 
         self.shortcut2 = nn.Sequential()
         
 
         # CONVOLUTION BLOCK 3 C3
         self.convblock3 = nn.Sequential(
-            nn.Conv2d(in_channels=64, out_channels=128, kernel_size=(3, 3), padding=1, bias=False),
+            nn.Conv2d(in_channels=32, out_channels=42, kernel_size=(3, 3), padding=1, bias=False),
+            # SeparableConv2d(in_channels=32, out_channels=42, kernel_size=1, stride=1, padding=1, dilation=1, bias=False),
             nn.ReLU(),
-            nn.BatchNorm2d(128),
+            nn.BatchNorm2d(42),
             nn.Dropout(dropout_value),
 
-            # nn.Conv2d(in_channels=128, out_channels=256, kernel_size=(3, 3), padding=1, bias=False),
-            SeparableConv2d(in_channels=64, out_channels=128, kernel_size=1, stride=1, padding=1, dilation=1, bias=False),
+            # nn.Conv2d(in_channels=86, out_channels=100, kernel_size=(3, 3), padding=1, bias=False),
+            SeparableConv2d(in_channels=42, out_channels=48, kernel_size=1, stride=1, padding=1, dilation=1, bias=False),
             nn.ReLU(),
-            nn.BatchNorm2d(256),
+            nn.BatchNorm2d(48),
             nn.Dropout(dropout_value),
 
-            nn.Conv2d(in_channels=256, out_channels=512, kernel_size=(3, 3), padding=0, bias=False, dilation=2),
+            nn.Conv2d(in_channels=48, out_channels=56, kernel_size=(3, 3), padding=0, bias=False, dilation=2),
             nn.ReLU(),
-            nn.BatchNorm2d(512),
+            nn.BatchNorm2d(56),
             nn.Dropout(dropout_value)
         ) 
 
         # OUTPUT BLOCK 
         self.output = nn.Sequential(
             nn.AvgPool2d(kernel_size=20),
-            nn.Conv2d(in_channels=20, out_channels=10, kernel_size=(1, 1), padding=0, bias=False)
+            nn.Conv2d(in_channels=56, out_channels=10, kernel_size=(1, 1), padding=0, bias=False)
         ) 
 
         self.dropout = nn.Dropout(dropout_value)
@@ -844,7 +846,7 @@ class CIFAR10_NoMPNetwork(nn.Module):
 
         y1 = self.convblock2(y)
         y1 = self.transitionblock2(y1)
-        y1 += self.shortcut2(y)
+        #y1 += self.shortcut2(y)
         y1 = F.relu(y1)
 
         y1 = self.convblock3(y1)
