@@ -2,9 +2,13 @@
 
 ## Assignment
 
-|Code Link |
-|---|
-|[GitHub](https://github.com/garima-mahato/ERA_V1/blob/main/Session9_AdvancedConvolutionsDataAugmentationAndVisualization/S9_Assignment_FinalSubmission.ipynb)|
+|Name|Code Link |
+|---|---|
+|Execution Jupyter Notebook|[Open](https://github.com/garima-mahato/ERA_V1/blob/main/Session9_AdvancedConvolutionsDataAugmentationAndVisualization/S9_Assignment_FinalSubmission.ipynb)|
+| Data Loader Code | [Open](https://github.com/garima-mahato/ERA_V1/blob/main/gmo/data_engine/data_loader.py) |
+| Data Augmenter Code | [Open](https://github.com/garima-mahato/ERA_V1/blob/main/gmo/data_engine/data_augmenter.py) |
+| Model Code | [Open](https://github.com/garima-mahato/ERA_V1/blob/main/gmo/model.py) |
+| Utility Code | [Open](https://github.com/garima-mahato/ERA_V1/blob/main/gmo/utils.py) |
 
 #### Results: 
   - Best Train Accuracy - 87.9%
