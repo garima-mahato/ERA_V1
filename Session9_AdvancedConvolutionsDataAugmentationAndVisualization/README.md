@@ -2,6 +2,10 @@
 
 ## Assignment
 
+|Code Link |
+|---|
+|[GitHub](https://github.com/garima-mahato/ERA_V1/blob/main/Session9_AdvancedConvolutionsDataAugmentationAndVisualization/S9_Assignment_FinalSubmission.ipynb)|
+
 #### Results: 
   - Best Train Accuracy - 87.9%
   - Best Test Accuracy - 85.66%
@@ -10,8 +14,6 @@
   - Number of Epochs - 20
 
 ### Model Architecture
-
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session8_BatchNormalizationAndRegularization/assets/cifar10_bn_torchviz.png)
 
 ```
 ----------------------------------------------------------------
@@ -75,6 +77,10 @@ Estimated Total Size (MB): 14.61
 ----------------------------------------------------------------
 
 ```
+
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session9_AdvancedConvolutionsDataAugmentationAndVisualization/assets/cifar10_s9__finaltorchviz.png)
+
+---
 
 
 ##### <b>Train/Test Logs</b>
@@ -182,9 +188,9 @@ Test set: Average loss: 0.4453, Accuracy: 8551/10000 (85.51%)
 
 ##### <b>Train/Test Visualization</b>
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session8_BatchNormalizationAndRegularization/assets/train_test_acc_loss_comp.png)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session9_AdvancedConvolutionsDataAugmentationAndVisualization/assets/train_test_acc_loss_comp.png)
 
 ##### <b>10 Mis-classified Images </b>
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session8_BatchNormalizationAndRegularization/assets/cifar10_s9_misclassified_imgs.png)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session9_AdvancedConvolutionsDataAugmentationAndVisualization/assets/cifar10_s9_final_misclassified_imgs.png)
 
