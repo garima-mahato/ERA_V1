@@ -230,38 +230,38 @@ Test set: Average loss: 0.0031, Accuracy: 9031/10000 (90.31%)
 
 ##### <b>Train/Test Visualization</b>
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/train_test_diff_graphs.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/train_test_diff_graphs.png)
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/train_vs_test_acc_comparison_graph.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/train_vs_test_acc_comparison_graph.png)
 
 #### <b>Correctly Classified Images </b>
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/correctly_classified_imgs.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/correctly_classified_imgs.png)
 
 <b>GRAD-CAM of correctly classified Images </b>
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_0_bird.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_0_bird.png)
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_1_deer.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_1_deer.png)
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_2_airplane.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_2_airplane.png)
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_3_bird.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_3_bird.png)
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_4_airplane.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_4_airplane.png)
 
 #### <b>Mis-classified Images </b>
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/misclassified_imgs.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/misclassified_imgs.png)
 
 <b>GRAD-CAM of mis-classified Images </b>
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_0_bird.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_0_bird.png)
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_1_airplane.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_1_airplane.png)
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_2_dog.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_2_dog.png)
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_3_cat.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_3_cat.png)
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_4_bird.PNG)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_4_bird.png)
