@@ -238,30 +238,19 @@ Test set: Average loss: 0.0031, Accuracy: 9031/10000 (90.31%)
 
 ![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/correctly_classified_imgs.png)
 
-<b>GRAD-CAM of correctly classified Images </b>
+<b>GRAD-CAM of different network layers correctly classified Images </b>
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_0_bird.png)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct.png)
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_1_deer.png)
-
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_2_airplane.png)
-
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_3_bird.png)
-
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_4_airplane.png)
 
 #### <b>Mis-classified Images </b>
 
 ![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/misclassified_imgs.png)
 
-<b>GRAD-CAM of mis-classified Images </b>
+<b>GRAD-CAM of different network layers mis-classified Images </b>
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_0_bird.png)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/grad_cam_incorrect.png)
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_1_airplane.png)
+#### <b>GRAD-CAM of 25 Mis-classified Images </b>
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_2_dog.png)
-
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_3_cat.png)
-
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_4_bird.png)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/grad_cam_25_misclassified_imgs.png)
