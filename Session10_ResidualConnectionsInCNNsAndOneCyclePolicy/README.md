@@ -4,17 +4,21 @@
 
 |Name|Code Link |
 |---|---|
-|Execution Jupyter Notebook|[Open]()|
-| Data Loader Code | [Open]() |
-| Data Augmenter Code | [Open]() |
-| Model Code | [Open]() |
-| All Code | [Open]() |
+|Execution Jupyter Notebook|[Open](https://github.com/garima-mahato/ERA_V1/blob/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/ERA_V1_Session10_ResidualConnectionsInCNNsAndOneCyclePolicy_with_Adam.ipynb)|
+| Data Loader Code | [Open](https://github.com/garima-mahato/ERA_V1_API/blob/main/data_engine/data_loader.py) |
+| Data Augmenter Code | [Open](https://github.com/garima-mahato/ERA_V1_API/blob/main/data_engine/data_augmenter.py) |
+| Model Code | [Open](https://github.com/garima-mahato/ERA_V1_API/blob/main/models/custom_resnet.py) |
+| All Code | [Open](https://github.com/garima-mahato/ERA_V1_API) |
 
 #### Results: 
   - Best Test Accuracy - 90.31%
   - Test Accuracy - 90.31%
   - Total Parameters - 6,573,120
   - Number of Epochs - 24
+
+### CIFAR10 Dataset
+
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/cifar10)
 
 ### Model Architecture
 
@@ -67,10 +71,13 @@ Estimated Total Size (MB): 31.84
 
 ```
 
-![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session9_AdvancedConvolutionsDataAugmentationAndVisualization/assets/cifar10_s9__finaltorchviz.png)
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/cifar10_s10_custom_resnet_torchviz.png)
 
 ---
 
+#### <b>LR Finder </b>
+
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/lr_finder.JPG)
 
 ##### <b>Train/Test Logs</b>
 
@@ -223,9 +230,38 @@ Test set: Average loss: 0.0031, Accuracy: 9031/10000 (90.31%)
 
 ##### <b>Train/Test Visualization</b>
 
-![]()
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/train_test_diff_graphs.PNG)
 
-##### <b>10 Mis-classified Images </b>
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/train_vs_test_acc_comparison_graph.PNG)
 
-![]()
+#### <b>Correctly Classified Images </b>
 
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/correctly_classified_imgs.PNG)
+
+<b>GRAD-CAM of correctly classified Images </b>
+
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_0_bird.PNG)
+
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_1_deer.PNG)
+
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_2_airplane.PNG)
+
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_3_bird.PNG)
+
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_correct_4_airplane.PNG)
+
+#### <b>Mis-classified Images </b>
+
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/misclassified_imgs.PNG)
+
+<b>GRAD-CAM of mis-classified Images </b>
+
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_0_bird.PNG)
+
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_1_airplane.PNG)
+
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_2_dog.PNG)
+
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_3_cat.PNG)
+
+![](https://raw.githubusercontent.com/garima-mahato/ERA_V1/main/Session10_ResidualConnectionsInCNNsAndOneCyclePolicy/asset/gradcam_incorrect_4_bird.PNG)
