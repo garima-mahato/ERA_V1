@@ -19,9 +19,7 @@ def generate_weird_tale(context = None, max_new_tokens = 500):
     return wtale
 
 title = "Shakespeare's Weird Tales"
-description = '''It is a tale
-Told by an idiot, full of sound and fury,
-Signifying nothing.'''
+description = "It is a tale.Told by an idiot, full of sound and fury, Signifying nothing."
 examples = [[None,500],["Hi",1000]]
 
 context = gr.TextArea(value=None, label="Do you want to give a context ?")
